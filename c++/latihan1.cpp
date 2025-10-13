@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    string nama = "NASYWA NAYLA AZZAHRA";
+    string nama = "Nasywa Nayla Azzahra";
     int umur = 20;
     float tinggi = 168;
     bool aktif = true;
@@ -14,3 +14,4 @@ int main() {
 
     return 0;
 }
+
