@@ -1,0 +1,15 @@
+Tugas =float(input("masukan nilai tugas : "))
+UTS =float(input("masukan nilai UTS: "))
+UAS =float(input("masukan nilai UAS: "))
+Nilai_akhir =(0.3 * Tugas)+(0.3 * UTS)+(0.4 * UAS)
+print("nilai akhir=",Nilai_akhir)
+if Nilai_akhir>=60:
+  print("status.lulus")
+else:
+  print("status.tidak lulus")
+hasilnya
+masukan nilai tugas : 80
+masukan nilai UTS: 90
+masukan nilai UAS: 90
+nilai akhir= 87.0
+status.lulus
