@@ -1,0 +1,13 @@
+<?php
+$tugas=readline("masukan nilai tugas:");
+$uts=readline("masukan nilai uts:");
+$uas=readline("masukan nilai UAS:");
+
+$nilaiAkhir=(0.3*$tugas)+(0.3*$uts)+(0.4*$uas);
+
+echo "nilai akhir=$nilaiakhir\n";
+if($nilaiAkhir>=60)
+echo"status: LULUS \n";
+else
+echo"status: TIDAK LULUS\n";
+?>
