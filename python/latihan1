@@ -7,9 +7,3 @@ if Nilai_akhir>=60:
   print("status.lulus")
 else:
   print("status.tidak lulus")
-hasilnya
-masukan nilai tugas : 80
-masukan nilai UTS: 90
-masukan nilai UAS: 90
-nilai akhir= 87.0
-status.lulus
