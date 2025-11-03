@@ -1,13 +1,24 @@
 <?php
-$tugas=readline("masukan nilai tugas:");
-$uts=readline("masukan nilai uts:");
-$uas=readline("masukan nilai UAS:");
+// baca input dari STDIN
+echo "masukan nilai tugas:";
+$tugas = (float) trim(fgets(STDIN));
 
-$nilaiAkhir=(0.3*$tugas)+(0.3*$uts)+(0.4*$uas);
+echo "masukan nilai uts:";
+$uts = (float) trim(fgets(STDIN));
 
-echo "nilai akhir=$nilaiakhir\n";
-if($nilaiAkhir>=60)
-echo"status: LULUS \n";
-else
-echo"status: TIDAK LULUS\n";
-?>
+echo "masukan nilai UAS:";
+$uas = (float) trim(fgets(STDIN));
+
+// hitung nilai akhir (rata-rata sederhana)
+$nilaiakhir = ($tugas + $uts + $uas) / 3;
+
+// tampilkan hasil
+echo "nilai akhir=" . $nilaiakhir . PHP_EOL;
+
+// tentukan status (ubah ambang sesuai kebutuhan)
+if ($nilaiakhir >= 60) {
+    $status = "LULUS";
+} else {
+    $status = "TIDAK LULUS";
+}
+echo "status: " . $status . PHP_EOL;
