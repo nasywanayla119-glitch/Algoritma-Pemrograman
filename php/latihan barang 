@@ -1,0 +1,25 @@
+<?php
+
+$nama = readline("Masukan nama barang: ");
+$harga = floatval(readline("Masukan harga barang: "));
+$jumlah = intval(readline("Masukan jumlah beli: "));
+
+$total = $harga * $jumlah;
+
+if ($total > 6700) {
+    $diskon = $total * 0.6;
+} else {
+    $diskon = 0;
+}
+
+$total_bayar = $total - $diskon;
+
+echo "\n====== STRUK PEMBELIAN ======\n";
+echo "Nama barang   : $nama\n";
+echo "Harga satuan  : $harga\n";
+echo "Jumlah beli   : $jumlah\n";
+echo "Total harga   : $total\n";
+echo "Diskon        : $diskon\n";
+echo "Total bayar   : $total_bayar\n";
+echo "==============================\n";
+?>
