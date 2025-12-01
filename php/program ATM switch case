@@ -1,0 +1,75 @@
+<?php
+function formatRupiah($angka) {
+    return "Rp " . number_format($angka, 0, ',', '.');
+}
+
+do {
+    echo "Masukkan Nama: ";
+    $nama = trim(fgets(STDIN));
+    $valid = !empty($nama);
+
+    echo $valid ? "TRUE\n" : "FALSE, coba lagi!\n";
+} while (!$valid);
+
+echo "Masukkan NIM (angka saja): ";
+$nim = trim(fgets(STDIN));
+$saldo = intval($nim);
+
+echo "\n===========================\n";
+echo "Nama: $nama\n";
+echo "Saldo awal: " . formatRupiah($saldo) . "\n";
+echo "===========================\n";
+
+do {
+    echo "\n===== MENU ATM =====\n";
+    echo "1. Cek Saldo\n";
+    echo "2. Tarik Tunai\n";
+    echo "3. Setor Tunai\n";
+    echo "4. Transfer\n";
+    echo "5. Keluar\n";
+    echo "Pilih Menu: ";
+    $pilihan = trim(fgets(STDIN));
+
+    switch ($pilihan) {
+        case 1:
+            echo "Saldo kamu: " . formatRupiah($saldo) . "\n";
+            break;
+
+        case 2:
+            echo "Masukkan nominal tarik tunai: ";
+            $tarik = trim(fgets(STDIN));
+            if ($tarik > $saldo) {
+                echo "Saldo tidak cukup!\n";
+            } else {
+                $saldo -= $tarik;
+                echo "Penarikan berhasil! Saldo: " . formatRupiah($saldo) . "\n";
+            }
+            break;
+
+        case 3:
+            echo "Masukkan nominal setor tunai: ";
+            $setor = trim(fgets(STDIN));
+            $saldo += $setor;
+            echo "Setoran berhasil! Saldo: " . formatRupiah($saldo) . "\n";
+            break;
+
+        case 4:
+            echo "Masukkan nominal transfer: ";
+            $transfer = trim(fgets(STDIN));
+            if ($transfer > $saldo) {
+                echo "Saldo tidak cukup!\n";
+            } else {
+                $saldo -= $transfer;
+                echo "Transfer sukses! Saldo: " . formatRupiah($saldo) . "\n";
+            }
+            break;
+
+        case 5:
+            echo "Terima kasih sudah menggunakan ATM!\n";
+            break;
+
+        default:
+            echo "Menu tidak tersedia!\n";
+    }
+} while ($pilihan != 5);
+?>
