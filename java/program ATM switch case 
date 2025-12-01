@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class ATM {
+    public static String formatRupiah(int angka) {
+        return String.format("Rp %,d", angka).replace(",", ".");
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        String nama;
+        do {
+            System.out.print("Masukkan Nama: ");
+            nama = input.nextLine();
+            System.out.println(nama.isEmpty() ? "FALSE, coba lagi!" : "TRUE");
+        } while (nama.isEmpty());
+
+        System.out.print("Masukkan NIM (angka saja): ");
+        int saldo = input.nextInt();
+
+        System.out.println("\n===========================");
+        System.out.println("Nama: " + nama);
+        System.out.println("Saldo awal: " + formatRupiah(saldo));
+        System.out.println("===========================");
+
+        int pilih;
+        do {
+            System.out.println("\n===== MENU ATM =====");
+            System.out.println("1. Cek Saldo");
+            System.out.println("2. Tarik Tunai");
+            System.out.println("3. Setor Tunai");
+            System.out.println("4. Transfer");
+            System.out.println("5. Keluar");
+            System.out.print("Pilih Menu: ");
+            pilih = input.nextInt();
+
+            switch (pilih) {
+                case 1:
+                    System.out.println("Saldo kamu: " + formatRupiah(saldo));
+                    break;
+
+                case 2:
+                    System.out.print("Masukkan nominal tarik: ");
+                    int tarik = input.nextInt();
+                    if (tarik > saldo)
+                        System.out.println("Saldo tidak cukup!");
+                    else {
+                        saldo -= tarik;
+                        System.out.println("Tarik berhasil! Saldo: " + formatRupiah(saldo));
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Masukkan nominal setor: ");
+                    saldo += input.nextInt();
+                    System.out.println("Setor berhasil! Saldo: " + formatRupiah(saldo));
+                    break;
+
+                case 4:
+                    System.out.print("Masukkan nominal transfer: ");
+                    int transfer = input.nextInt();
+                    if (transfer > saldo)
+                        System.out.println("Saldo tidak cukup!");
+                    else {
+                        saldo -= transfer;
+                        System.out.println("Transfer sukses! Saldo: " + formatRupiah(saldo));
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Terima kasih sudah menggunakan ATM!");
+                    break;
+
+                default:
+                    System.out.println("Menu tidak tersedia!");
+            }
+        } while (pilih != 5);
+
+        input.close();
+    }
+}
