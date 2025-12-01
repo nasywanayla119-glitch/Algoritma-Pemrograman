@@ -1,0 +1,94 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+string formatRupiah(int angka) {
+    string s = to_string(angka), res = "Rp ";
+    int count = 0;
+    for (int i = s.length() - 1; i >= 0; i--) {
+        res = s[i] + res;
+        count++;
+        if (count == 3 && i != 0) {
+            res = "." + res;
+            count = 0;
+        }
+    }
+    return res;
+}
+
+int main() {
+    string nama;
+    do {
+        cout << "Masukkan Nama: ";
+        getline(cin, nama);
+        cout << (nama.empty() ? "FALSE, coba lagi!\n" : "TRUE\n");
+    } while (nama.empty());
+
+    int saldo;
+    cout << "Masukkan NIM (angka saja): ";
+    cin >> saldo;
+
+    cout << "\n===========================\n";
+    cout << "Nama: " << nama << endl;
+    cout << "Saldo awal: " << formatRupiah(saldo) << endl;
+    cout << "===========================\n";
+
+    int pilihan;
+    do {
+        cout << "\n===== MENU ATM =====\n";
+        cout << "1. Cek Saldo\n2. Tarik Tunai\n3. Setor Tunai\n4. Transfer\n5. Keluar\n";
+        cout << "Pilih Menu: ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+            case 1:
+                cout << "Saldo kamu: " << formatRupiah(saldo) << endl;
+                break;
+
+            case 2: {
+                int tarik;
+                cout << "Masukkan nominal tarik: ";
+                cin >> tarik;
+                if (tarik > saldo)
+                    cout << "Saldo tidak cukup!\n";
+                else {
+                    saldo -= tarik;
+                    cout << "Tarik berhasil! Saldo: " << formatRupiah(saldo) << endl;
+                }
+                break;
+            }
+
+            case 3: {
+                int setor;
+                cout << "Masukkan nominal setor: ";
+                cin >> setor;
+                saldo += setor;
+                cout << "Setor berhasil! Saldo: " << formatRupiah(saldo) << endl;
+                break;
+            }
+
+            case 4: {
+                int transfer;
+                cout << "Masukkan nominal transfer: ";
+                cin >> transfer;
+                if (transfer > saldo)
+                    cout << "Saldo tidak cukup!\n";
+                else {
+                    saldo -= transfer;
+                    cout << "Transfer sukses! Saldo: " << formatRupiah(saldo) << endl;
+                }
+                break;
+            }
+
+            case 5:
+                cout << "Terima kasih sudah menggunakan ATM!\n";
+                break;
+
+            default:
+                cout << "Menu tidak tersedia!\n";
+        }
+    } while (pilihan != 5);
+
+    return 0;
+}
