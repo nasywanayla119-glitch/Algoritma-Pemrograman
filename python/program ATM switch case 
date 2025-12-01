@@ -1,0 +1,62 @@
+def format_rupiah(angka):
+    return "Rp {:,}".format(angka).replace(",", ".")
+
+while True:
+    nama = input("Masukkan Nama: ")
+    if nama.strip() != "":
+        print("TRUE")
+        break
+    else:
+        print("FALSE, coba lagi!")
+
+nim = input("Masukkan NIM (angka saja): ")
+saldo = int(nim)
+
+print("\n===========================")
+print(f"Nama: {nama}")
+print("Saldo awal:", format_rupiah(saldo))
+print("===========================")
+
+while True:
+    print("""
+===== MENU ATM =====
+1. Cek Saldo
+2. Tarik Tunai
+3. Setor Tunai
+4. Transfer
+5. Keluar
+""")
+
+    pilihan = input("Pilih menu: ")
+
+    match pilihan:
+        case "1":
+            print("Saldo kamu:", format_rupiah(saldo))
+
+        case "2":
+            tarik = int(input("Nominal tarik: "))
+            if tarik > saldo:
+                print("Saldo tidak cukup!")
+            else:
+                saldo -= tarik
+                print("Tarik berhasil! Saldo:", format_rupiah(saldo))
+
+        case "3":
+            setor = int(input("Nominal setor: "))
+            saldo += setor
+            print("Setor berhasil! Saldo:", format_rupiah(saldo))
+
+        case "4":
+            transfer = int(input("Nominal transfer: "))
+            if transfer > saldo:
+                print("Saldo tidak cukup!")
+            else:
+                saldo -= transfer
+                print("Transfer sukses! Saldo:", format_rupiah(saldo))
+
+        case "5":
+            print("Terima kasih sudah menggunakan ATM!")
+            break
+
+        case _:
+            print("Menu tidak tersedia!")
